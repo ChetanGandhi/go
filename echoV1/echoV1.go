@@ -1,3 +1,4 @@
+// Prints command line arguments using simple for loop.
 package main
 
 import "fmt"
