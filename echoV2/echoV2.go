@@ -10,7 +10,7 @@ func main() {
 
 	// range returns two values, index and value of the element at that index.
 	// We do not need index hence specifying "_" the "blank identifier", as go do not allow to have unused variables.
-	for _, argument := range os.Args[1:] {
+	for _, argument := range os.Args[0:len(os.Args)] {
 		statment += seperator + argument
 		seperator = " "
 	}
