@@ -1,4 +1,4 @@
-// Prints the duplicate lines with its count.
+// Prints the duplicate lines, from stdin, with its count.
 package main
 
 import "fmt"
