@@ -1,5 +1,4 @@
 // Prints the duplicate lines, from stdin or from give list of files, with its count.
-// Prints the duplicate lines, from stdin or from give list of files, with its count.
 package main
 
 import "fmt"
