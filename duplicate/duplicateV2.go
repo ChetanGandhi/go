@@ -14,6 +14,7 @@ func main() {
 	} else {
 		for _, fileName := range files {
 			file, error := os.Open(fileName)
+
 			if error != nil {
 				fmt.Fprintf(os.Stderr, "Error opening file: %v\n", error)
 				continue
