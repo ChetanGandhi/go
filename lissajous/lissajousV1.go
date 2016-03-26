@@ -9,10 +9,9 @@ import "math"
 import "math/rand"
 import "os"
 
-var palette []color.Color = []color.Color{color.White, color.Black}
+var palette []color.Color = []color.Color{color.Black, color.RGBA{0xff, 0x00, 0x00, 0xff}, color.RGBA{0x00, 0xff, 0x00, 0xff}, color.RGBA{0x00, 0x00, 0xff, 0xff}, color.RGBA{0x94, 0x00, 0xd3, 0xff}, color.RGBA{0x1e, 0x90, 0xff, 0xff}}
 
-const whiteColorIndex uint8 = 0
-const blackColorIndex uint8 = 1
+var colorIndex []uint8 = []uint8{0, 1, 2, 3, 4, 5}
 
 func main() {
 	lissajous(os.Stdout)
@@ -28,15 +27,23 @@ func lissajous(out io.Writer) {
 	var frequency float64 = rand.Float64() * 0.3 // Relative frequency of y oscillator
 	var animation gif.GIF = gif.GIF{LoopCount: numberOfFrames}
 	var phase float64 = 0.0 // Phase difference
+	var nextColorIndex int = 1
 
 	for counter := 0; counter < numberOfFrames; counter++ {
 		var rect image.Rectangle = image.Rect(0, 0, 2*size+1, 2*size+1)
 		var img *image.Paletted = image.NewPaletted(rect, palette)
 
+		nextColorIndex++
+
+		if nextColorIndex >= len(colorIndex) {
+			nextColorIndex = 1
+		}
+
 		for cycleCounter := 0.0; cycleCounter < cycle*2.0*math.Pi; cycleCounter += angularResolution {
 			var x float64 = math.Sin(cycleCounter)
 			var y float64 = math.Sin(cycleCounter*frequency + phase)
-			img.SetColorIndex(size+int(x*float64(size)+0.5), size+int(y*float64(size)+0.5), blackColorIndex)
+
+			img.SetColorIndex(size+int(x*float64(size)+0.5), size+int(y*float64(size)+0.5), colorIndex[nextColorIndex])
 		}
 
 		phase += 0.1
