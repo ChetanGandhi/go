@@ -24,7 +24,7 @@ func lissajous(out io.Writer) {
 	const numberOfFrames int = 64           // Number of animation frames
 	const delay int = 8                     // Delay between frames in 10ms unit
 
-	var frequency float64 = rand.Float64() * 0.3 // Relative frequency of y oscillator
+	var frequency float64 = rand.Float64() * 3.0 // Relative frequency of y oscillator
 	var animation gif.GIF = gif.GIF{LoopCount: numberOfFrames}
 	var phase float64 = 0.0 // Phase difference
 	var nextColorIndex int = 1
