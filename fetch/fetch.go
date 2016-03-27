@@ -2,7 +2,7 @@
 package main
 
 import "fmt"
-import "io/ioutil"
+import "io"
 import "net/http"
 import "os"
 
@@ -15,7 +15,7 @@ func main() {
 			os.Exit(1)
 		}
 
-		b, err := ioutil.ReadAll(response.Body)
+		b, err := io.Copy(os.Stdout, response.Body)
 		response.Body.Close()
 
 		if err != nil {
