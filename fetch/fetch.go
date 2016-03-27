@@ -5,9 +5,15 @@ import "fmt"
 import "io"
 import "net/http"
 import "os"
+import "strings"
 
 func main() {
 	for _, url := range os.Args[1:len(os.Args)] {
+
+		if(!strings.HasPrefix(url, "http://")) {
+			url = strings.Join([]string{"http://", url}, "");
+		}
+
 		response, err := http.Get(url)
 
 		if err != nil {
