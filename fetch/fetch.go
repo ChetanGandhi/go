@@ -21,14 +21,14 @@ func main() {
 			os.Exit(1)
 		}
 
-        fmt.Printf("Status: %s\n--------------------\n", response.Status)
-
 		if _, err := io.Copy(os.Stdout, response.Body); err != nil {
 			response.Body.Close()
-            fmt.Fprintf(os.Stderr, "Fetch: reading %s: %v\n", url, err)
+			fmt.Fprintf(os.Stderr, "Fetch: reading %s: %v\n", url, err)
 			os.Exit(1)
 		}
 
-        response.Body.Close()
+		fmt.Printf("\n--------------------\nStatus: %s\n--------------------\n", response.Status)
+
+		response.Body.Close()
 	}
 }
